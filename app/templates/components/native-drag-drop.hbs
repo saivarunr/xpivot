@@ -20,7 +20,7 @@
  				{{!-- Column Key Container || Column Drop-Target --}}
  				<div class="flex-50 columnKeysContainer" ondragover={{action 'allowDrop'}} ondrop={{action 'dropOnCol'}} style="border-bottom:1px solid">
 				  	{{#each columnKeysContainer as |cKey|}}
-						<div draggable='true' from="columnKeysContainer" x-pivotKey={{cKey}} ondragstart={{action "drag"}}>
+						<div draggable='true' from="columnKeysContainer" x-pivotKey={{cKey}} ondragstart={{action "drag"}} ondrop={{action "dropOnColCard" cKey}}>
 							{{#paper-card as |card|}}
 							{{#card.title as |title|}}
 							{{#title.text as |text|}}
@@ -34,7 +34,7 @@
  				{{!-- Row Key Container || Row Drop-Target --}}
  				<div class="flex-50 rowKeysContainer" ondragover={{action 'allowDrop'}} ondrop={{action 'dropOnRow'}}>
 				{{#each rowKeysContainer as |rKey|}}
-					<div draggable='true' from="rowKeysContainer"  class="rowKeysContainer" x-pivotKey={{rKey}} ondragstart={{action "drag"}}>
+					<div draggable='true' from="rowKeysContainer"  class="rowKeysContainer" x-pivotKey={{rKey}} ondragstart={{action "drag"}} ondrop={{action "dropOnRowCard" rKey}}>
 						{{#paper-card as |card|}}
 						{{#card.title as |title|}}
 						{{#title.text as |text|}}
