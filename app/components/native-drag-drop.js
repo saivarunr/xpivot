@@ -40,8 +40,8 @@ export default Ember.Component.extend({
 		this.notifyPropertyChange('mainKeysContainer');
 	},
 	updateModels(attribute,from,to){
-		var _from=this.get(from);
-		var _to=this.get(to);
+		let _from=this.get(from);
+		let _to=this.get(to);
 		if(_to.indexOf(attribute)<0){
 			_from.splice(_from.indexOf(attribute),1);
 			_to.push(attribute);
