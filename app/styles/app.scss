@@ -122,3 +122,22 @@ table.pvtTable tbody tr td {
 .sortable-objects{
     height: 100%;
 }
+
+/*Native Drag Drop CSS from here */
+.x-pivot-head{
+    height:8vh;
+    background:#3d70bc;
+}
+.x-pivot-keysContainer{
+    height:500px;
+    border-right:1px solid;
+}
+.x-pivot-keysContainer-left{
+    border-right:1px solid;height:500px
+}
+.x-pivot-keysContainer-right{
+    height:100%;
+}
+.x-pivot-columnKeysContainer{
+    border-bottom:1px solid
+}
