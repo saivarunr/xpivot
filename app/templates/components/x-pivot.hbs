@@ -1,0 +1,9 @@
+<div style="top:0px;left:0px;width:100%;height:63.8px;display:flex;background:#3d70bc;"></div>
+<div style="display:flex">
+	<div style="flex:2">
+		{{simple-drag-drop jsonKeys=jsonKeys keysChanged=(action 'keysChanged')}}
+	</div>
+	<div style="flex:3">
+		{{pivot-table rows=rows cols=cols jsonKeys=jsonKeys jsonArray=jsonArray}}
+	</div>
+</div>

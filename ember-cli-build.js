@@ -6,7 +6,9 @@ module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
     // Add options here
   });
-
+  app.import('bower_components/pivottable/dist/pivot.js');
+  app.import('bower_components/jquery-ui/jquery-ui.js');
+  app.import('vendor/d3.js');
   // Use `app.import` to add additional libraries to the generated
   // output files.
   //

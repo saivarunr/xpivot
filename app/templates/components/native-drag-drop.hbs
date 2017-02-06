@@ -1,0 +1,55 @@
+<div class="layout-row flex">
+ 	<div class="flex-40" style="height:500px;border-right:1px solid">
+ 	<div class="layout-row flex">
+ 		<div class="flex-50" style="border-right:1px solid;height:500px" ondragover={{action 'allowDrop'}}  ondrop={{action "dropOnMain"}}>
+		{{!-- Main key container uses ember paper card --}}
+		{{#each mainKeysContainer as |key|}}
+			<div draggable='true' class="mainKeysContainer" from="mainKeysContainer" x-pivotKey={{key}} ondragstart={{action "drag"}}>
+				{{#paper-card as |card|}}
+				{{#card.title as |title|}}
+				{{#title.text as |text|}}
+					{{#text.headline}}{{key}}{{/text.headline}}
+				{{/title.text}}
+				{{/card.title}}
+				{{/paper-card}}
+			</div>
+		{{/each}}
+ 		</div>
+ 		<div class="flex-50">
+ 			<div class="layout-column flex" style="height:100%">
+ 				{{!-- Column Key Container || Column Drop-Target --}}
+ 				<div class="flex-50 columnKeysContainer" ondragover={{action 'allowDrop'}} ondrop={{action 'dropOnCol'}} style="border-bottom:1px solid">
+				  	{{#each columnKeysContainer as |cKey|}}
+						<div draggable='true' from="columnKeysContainer" x-pivotKey={{cKey}} ondragstart={{action "drag"}}>
+							{{#paper-card as |card|}}
+							{{#card.title as |title|}}
+							{{#title.text as |text|}}
+								{{#text.headline}}{{cKey}}{{/text.headline}}
+							{{/title.text}}
+							{{/card.title}}
+							{{/paper-card}}
+						</div>
+					{{/each}}
+ 				</div>
+ 				{{!-- Row Key Container || Row Drop-Target --}}
+ 				<div class="flex-50 rowKeysContainer" ondragover={{action 'allowDrop'}} ondrop={{action 'dropOnRow'}}>
+				{{#each rowKeysContainer as |rKey|}}
+					<div draggable='true' from="rowKeysContainer"  class="rowKeysContainer" x-pivotKey={{rKey}} ondragstart={{action "drag"}}>
+						{{#paper-card as |card|}}
+						{{#card.title as |title|}}
+						{{#title.text as |text|}}
+							{{#text.headline}}{{rKey}}{{/text.headline}}
+						{{/title.text}}
+						{{/card.title}}
+						{{/paper-card}}
+					</div>
+				{{/each}}
+ 				</div>
+ 			</div>
+ 		</div>
+ 	</div>
+ 	</div>
+ 	<div class="flex-60">
+ 		{{x-main-pivot  jsonArray=jsonArray rowKeysContainer=rowKeysContainer  columnKeysContainer=columnKeysContainer}}
+ 	</div>
+</div>

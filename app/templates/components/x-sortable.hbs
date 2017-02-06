@@ -1,0 +1,7 @@
+{{#sortable-group onChange="reorderItems" as |group|}}
+  {{#each model.items as |item|}}
+    {{#sortable-item model=item group=group}}
+      {{item}}
+    {{/sortable-item}}
+  {{/each}}
+{{/sortable-group}}

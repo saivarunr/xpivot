@@ -7,6 +7,9 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('x-pivot');
+  this.route('native-drag-drop');
+  this.route('x-sortable');
 });
 
 export default Router;
