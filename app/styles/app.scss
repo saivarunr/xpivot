@@ -141,3 +141,12 @@ table.pvtTable tbody tr td {
 .x-pivot-columnKeysContainer{
     border-bottom:1px solid
 }
+
+md-card-title-text{
+    overflow: hidden;
+}
+.md-headline{
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
