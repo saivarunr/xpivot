@@ -51,7 +51,7 @@ export default Ember.Component.extend({
 			this.notifyPropertyChange(to);			
 		}
 	},
-	pushCardAtPosition:function(targetCard,pivotKey,toModel,fromModel,order){
+	pushCardAtPosition(targetCard,pivotKey,toModel,fromModel,order){
 		let _toModel=this.get(toModel);
 		let _fromModel=this.get(fromModel);
 		_fromModel.splice(_fromModel.indexOf(pivotKey),1);
@@ -69,9 +69,11 @@ export default Ember.Component.extend({
 	},
 	dropOnCard:function(cKey,event,model){
 		event.stopPropagation();
-		const xAxis=event.dataTransfer.getData('xAxis');
+		// Referenced  not used
+		// const xAxis=event.dataTransfer.getData('xAxis');
 		const yAxis=event.dataTransfer.getData('yAxis');
-		const currentXAxis=event.clientX;
+		// Referenced not used
+		// const currentXAxis=event.clientX; 
 		const currentYAxis=event.clientY;
 		let order=true;
 		if(currentYAxis>=yAxis){
@@ -91,18 +93,33 @@ export default Ember.Component.extend({
 		dropOnCol:function(event){
 			let from=event.dataTransfer.getData('from');
 			let pivotKey=event.dataTransfer.getData('x_PivotKey');
-			this.updateModels(pivotKey,from,'columnKeysContainer');
-		},
-		dropOnColCard:function(cKey,event){
-			this.dropOnCard(cKey,event,'columnKeysContainer');
-		},
-		dropOnRowCard:function(cKey,event){
-			this.dropOnCard(cKey,event,'rowKeysContainer');	
+			if(from ==='columnKeysContainer'){
+				let columnKeysContainer=this.get('columnKeysContainer');
+				const lastKey=columnKeysContainer[columnKeysContainer.length-1];
+				this.pushCardAtPosition(lastKey,pivotKey,'columnKeysContainer','columnKeysContainer',false);
+			}
+			else{
+				this.updateModels(pivotKey,from,'columnKeysContainer');
+			}
 		},
 		dropOnRow:function(event){
 			let from=event.dataTransfer.getData('from');
 			let pivotKey=event.dataTransfer.getData('x_PivotKey');
-			this.updateModels(pivotKey,from,'rowKeysContainer');
+			if(from ==='rowKeysContainer'){
+				let rowKeysContainer=this.get('rowKeysContainer');
+				const lastKey=rowKeysContainer[rowKeysContainer.length-1];
+				this.pushCardAtPosition(lastKey,pivotKey,'rowKeysContainer','rowKeysContainer',false);
+			}
+			else{
+				this.updateModels(pivotKey,from,'rowKeysContainer');	
+			}
+		},
+		dropOnColCard:function(cKey,event){
+			this.dropOnCard(cKey,event,'columnKeysContainer');
+
+		},
+		dropOnRowCard:function(cKey,event){
+			this.dropOnCard(cKey,event,'rowKeysContainer');	
 		},
 		allowDrop:function(event){
 			event.preventDefault();
@@ -116,14 +133,6 @@ export default Ember.Component.extend({
 			event.dataTransfer.setData('from',from);
 			event.dataTransfer.setData('xAxis',xAxis);
 			event.dataTransfer.setData('yAxis',yAxis);
-		},
-		reorderColumn:function(itemModels,draggedModel){
-			this.set('columnKeysContainer',itemModels);
-			this.notifyPropertyChange('columnKeysContainer');
-		},
-		reorderRow:function(itemModels,draggedModel){
-			this.set('rowKeysContainer',itemModels);
-			this.notifyPropertyChange('rowKeysContainer');	
 		}
 	}
 });
