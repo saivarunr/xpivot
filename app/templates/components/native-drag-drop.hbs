@@ -20,6 +20,7 @@
 		 		</div>
 		 		<div class="flex-50">
 		 			<div class="layout-column flex x-pivot-keysContainer-right">
+		 				<span class="x-pivotKeysContainer-title">Columns</span>
 		 				{{!-- Column Key Container || Column Drop-Target --}}
 		 				<div class="flex columnKeysContainer x-pivot-columnKeysContainer" ondragover={{action 'allowDrop'}} ondrop={{action 'dropOnCol'}}>
 						  	{{#each columnKeysContainer as |cKey|}}
@@ -36,6 +37,7 @@
 		 				</div>
 		 				{{!-- Row Key Container || Row Drop-Target --}}
 		 				<div class="flex rowKeysContainer" ondragover={{action 'allowDrop'}} ondrop={{action 'dropOnRow'}}>
+						<span class="x-pivotKeysContainer-title">Rows</span>
 						{{#each rowKeysContainer as |rKey|}}
 							<div draggable='true' from="rowKeysContainer"  class="rowKeysContainer" x-pivotKey={{rKey}} ondragstart={{action "drag"}} ondrop={{action "dropOnRowCard" rKey}}>
 								{{#paper-card as |card|}}
@@ -52,7 +54,7 @@
 		 		</div>
 		 	</div>
 		 	</div>
-		 	<div class="flex-60">
+		 	<div class="flex-60 x-pivot-container">
 		 		{{x-main-pivot  jsonArray=jsonArray rowKeysContainer=rowKeysContainer  columnKeysContainer=columnKeysContainer}}
 		 	</div>
 		</div>
